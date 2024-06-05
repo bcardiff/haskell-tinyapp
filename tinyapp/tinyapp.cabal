@@ -1,0 +1,38 @@
+cabal-version:      3.0
+name:               tinyapp
+version:            0.1.0.0
+synopsis:           Library to build tiny apps in Haskell
+-- description:
+homepage:           https://github.com/bcardiff/haskell-tinyapp
+license:            MIT
+license-file:       LICENSE
+author:             Brian J. Cardiff
+maintainer:         bcardiff@gmail.com
+-- copyright:
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+-- extra-source-files:
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:  MyLib
+    -- other-modules:
+    -- other-extensions:
+    build-depends:    base ^>=4.17.2.1
+    hs-source-dirs:   src
+    default-language: GHC2021
+
+test-suite tinyapp-test
+    import:           warnings
+    default-language: GHC2021
+    -- other-modules:
+    -- other-extensions:
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.17.2.1,
+        tinyapp
