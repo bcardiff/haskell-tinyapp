@@ -6,6 +6,9 @@ import Data.Text
 import Data.Text.IO
 import System.IO
 
+data ContinueExit = Continue | Exit
+  deriving (Eq, Show)
+
 data Sandbox state = Sandbox
   { -- Initial state
     initialize :: state,
@@ -13,7 +16,7 @@ data Sandbox state = Sandbox
     prompt :: state -> Text,
     -- Process the user input given the current state
     -- Returns the next state, the output and whether to continue or not the program
-    update :: Text -> state -> (state, Text, Bool)
+    update :: Text -> state -> (state, Text, ContinueExit)
   }
 
 runRepl :: Sandbox s -> IO ()
@@ -33,10 +36,10 @@ runRepl' config =
           Just input' -> do
             let (state', output, continue) = config_.update input' state
             Data.Text.IO.putStrLn output
-            if continue
-              then
+            case continue of
+              Continue ->
                 go config_ state'
-              else
+              Exit ->
                 pure state'
    in do
         go config config.initialize

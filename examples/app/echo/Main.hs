@@ -9,5 +9,11 @@ main =
     Repl.Sandbox
       { initialize = 1 :: Int,
         prompt = \i -> tshow i <> "> ",
-        update = \input state -> (state + 1, input, input /= "quit")
+        update = \input state ->
+          ( state + 1,
+            input,
+            if input == "quit"
+              then Exit
+              else Continue
+          )
       }
