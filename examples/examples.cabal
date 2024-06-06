@@ -15,11 +15,15 @@ extra-doc-files:    CHANGELOG.md
 common warnings
     ghc-options: -Wall
 
-executable examples
+executable echo
     import:           warnings
     main-is:          Main.hs
     -- other-modules:
     -- other-extensions:
-    build-depends:    base ^>=4.17.2.1
-    hs-source-dirs:   app
+    build-depends:
+        base ^>=4.17.2.1
+      , text
+      , tinyapp
+    hs-source-dirs:   app/echo
     default-language: GHC2021
+    default-extensions: OverloadedStrings

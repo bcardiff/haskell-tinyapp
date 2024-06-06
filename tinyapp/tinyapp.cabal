@@ -18,12 +18,19 @@ common warnings
 
 library
     import:           warnings
-    exposed-modules:  MyLib
+    exposed-modules:
+        TinyApp.Repl
+      , TinyApp.Text
     -- other-modules:
     -- other-extensions:
-    build-depends:    base ^>=4.17.2.1
+    build-depends:
+        base ^>=4.17.2.1
+      , text
     hs-source-dirs:   src
     default-language: GHC2021
+    default-extensions:
+        OverloadedStrings
+      , OverloadedRecordDot
 
 test-suite tinyapp-test
     import:           warnings
