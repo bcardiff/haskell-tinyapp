@@ -24,7 +24,6 @@ library
     -- other-extensions:
     build-depends:
         base ^>=4.17.2.1
-      , text
     hs-source-dirs:   src
     default-language: GHC2021
     default-extensions:
