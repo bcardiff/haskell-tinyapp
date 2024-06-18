@@ -20,11 +20,11 @@ data Sandbox state = Sandbox
 runRepl :: Sandbox s -> IO ()
 runRepl = Control.Monad.void . runRepl'
 
-runRepl' :: Sandbox s -> IO s
+runRepl' :: forall s. Sandbox s -> IO s
 runRepl' config =
-  let go :: Sandbox s -> s -> IO s
-      go config_ state = do
-        System.IO.putStr (config_.prompt state)
+  let go :: s -> IO s
+      go state = do
+        System.IO.putStr (config.prompt state)
         -- Since the prompt does not finish in a newline we force a flush right after
         hFlush stdout
         -- When Control-D an exception is thrown
@@ -32,12 +32,12 @@ runRepl' config =
         case input of
           Nothing -> pure state
           Just input' -> do
-            let (state', output, continue) = config_.update input' state
+            let (state', output, continue) = config.update input' state
             System.IO.putStrLn output
             case continue of
               Continue ->
-                go config_ state'
+                go state'
               Exit ->
                 pure state'
    in do
-        go config config.initialize
+        go config.initialize
