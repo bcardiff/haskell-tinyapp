@@ -20,7 +20,6 @@ library
     import:           warnings
     exposed-modules:
         TinyApp.Repl
-      , TinyApp.Text
     -- other-modules:
     -- other-extensions:
     build-depends:
@@ -29,8 +28,7 @@ library
     hs-source-dirs:   src
     default-language: GHC2021
     default-extensions:
-        OverloadedStrings
-      , OverloadedRecordDot
+        OverloadedRecordDot
 
 test-suite tinyapp-test
     import:           warnings

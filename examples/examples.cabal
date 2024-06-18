@@ -26,4 +26,4 @@ executable echo
       , tinyapp
     hs-source-dirs:   app/echo
     default-language: GHC2021
-    default-extensions: OverloadedStrings
+    default-extensions:
