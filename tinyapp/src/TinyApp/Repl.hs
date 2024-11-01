@@ -5,11 +5,11 @@ import Control.Exception
 import Control.Monad
 import System.IO
 
--- | Signals whether the REPL should continue asking input from the user or exit.
+-- | Signals whether the application should continue asking input from the user or exit.
 data ContinueExit = Continue | Exit
   deriving (Eq, Show)
 
--- | Defines a REPL application that is not allows to perform arbitrary IO while executing.
+-- | Defines a REPL application that is not allowed to perform arbitrary IO while executing.
 data Sandbox state = Sandbox
   { -- | Initial state
     initialize :: state,

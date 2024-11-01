@@ -1,4 +1,5 @@
--- | Build interactice apps that reacts to each keystroke
+-- | Build interactice apps that reacts to each keystroke and renders text
+-- Requires `ghc-options: -threaded`
 module TinyApp.Interactive
   ( Event (..),
     Key (..),
@@ -91,9 +92,15 @@ data Event = Key Key [Modifier]
 data ContinueExit = Continue | Exit
   deriving (Eq, Show)
 
+-- | Defines an interactive application that is not allowed to perform arbitrary IO while executing.
 data Sandbox state = Sandbox
-  { initialize :: state,
+  { -- | Initial state
+    initialize :: state,
+    -- | What to draw based on the current state.
+    -- The screen is cleared between render calls. Usually use '\n' or *Prelude.unlines* to render multiple lines.
     render :: state -> String,
+    -- | Process the event given the current state
+    -- Returns the next state and whether to continue or not the program
     update :: Event -> state -> (state, ContinueExit)
   }
 
