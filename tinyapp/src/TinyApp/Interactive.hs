@@ -20,6 +20,7 @@ import Control.Monad.State
 import Graphics.Vty qualified as V
 import Graphics.Vty.Input.Events qualified as VE
 
+-- | Representes keys that can be pressed
 data Key
   = KEsc
   | KChar Char
@@ -75,7 +76,7 @@ fromVKey V.KPageDown = KPageDown
 fromVKey V.KBegin = KBegin
 fromVKey V.KMenu = KMenu
 
--- Graphics.Vty.Input.Events.Modifier
+-- | Modifiers keys
 data Modifier = MShift | MCtrl | MMeta | MAlt
   deriving (Eq, Show, Read, Ord)
 
