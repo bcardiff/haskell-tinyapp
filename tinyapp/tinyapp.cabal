@@ -21,10 +21,14 @@ library
     import:           warnings
     exposed-modules:
         TinyApp.Repl
+        TinyApp.Interactive
     -- other-modules:
     -- other-extensions:
     build-depends:
-        base >=4.17.2.1 && <5.0
+        base >=4.17.2.1 && <5.0,
+        brick >= 2.4 && < 2.5,
+        vty >= 6.2 && < 6.3,
+        mtl >= 2.2.2 && < 2.3,
     hs-source-dirs:   src
     default-language: GHC2021
     default-extensions:

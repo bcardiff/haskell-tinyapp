@@ -22,8 +22,20 @@ executable echo
     -- other-extensions:
     build-depends:
         base ^>=4.17.2.1
-      , text
       , tinyapp
     hs-source-dirs:   app/echo
+    default-language: GHC2021
+    default-extensions:
+
+executable cursor
+    import:           warnings
+    main-is:          Main.hs
+    -- other-modules:
+    -- other-extensions:
+    ghc-options:      -threaded
+    build-depends:
+        base ^>=4.17.2.1
+      , tinyapp
+    hs-source-dirs:   app/cursor
     default-language: GHC2021
     default-extensions:
