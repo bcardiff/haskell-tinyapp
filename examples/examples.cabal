@@ -21,7 +21,7 @@ executable echo
     -- other-modules:
     -- other-extensions:
     build-depends:
-        base >=4.17.2.1 && <5.0
+        base >= 4.16 && <5.0
       , tinyapp
     hs-source-dirs:   app/echo
     default-language: GHC2021
@@ -34,7 +34,7 @@ executable cursor
     -- other-extensions:
     ghc-options:      -threaded
     build-depends:
-        base >=4.17.2.1 && <5.0
+        base >= 4.16 && <5.0
       , tinyapp
     hs-source-dirs:   app/cursor
     default-language: GHC2021
