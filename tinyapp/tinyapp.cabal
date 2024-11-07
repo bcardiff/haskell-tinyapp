@@ -1,6 +1,6 @@
 cabal-version:      3.0
 name:               tinyapp
-version:            0.2.0.0
+version:            0.2.1.0
 synopsis:           Library to build tiny apps in Haskell
 description:        Library to build tiny apps in Haskell such a REPLs or text-based applications that reacts to keystrokes
 homepage:           https://github.com/bcardiff/haskell-tinyapp
