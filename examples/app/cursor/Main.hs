@@ -30,7 +30,7 @@ mainTests :: IO ()
 mainTests =
   runTestsFor
     cursor
-    [ "starts at 2" ~> do
+    [ "starts at 1" ~> do
         expectStateEq 1
         expectRenderEq "\n[*                   ]",
       "exits on esc" ~> do

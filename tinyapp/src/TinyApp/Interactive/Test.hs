@@ -1,5 +1,6 @@
 module TinyApp.Interactive.Test
   ( TestCase,
+    InteractiveM,
     (~>),
     runTestsFor,
     expectRenderEq,
@@ -16,6 +17,7 @@ module TinyApp.Interactive.Test
   )
 where
 
+import Control.Monad (forM, forM_)
 import Control.Monad.Reader qualified as MTL
 import Data.IORef
 import GHC.Stack qualified as Stack
@@ -35,7 +37,7 @@ data Env s = Env
   }
 
 newtype InteractiveM s a = InteractiveM (MTL.ReaderT (Env s) IO a)
-  deriving (Functor, Applicative, Monad, MTL.MonadIO, MTL.MonadFail)
+  deriving (Functor, Applicative, Monad, MTL.MonadIO, MonadFail)
 
 data TestCase s = TestCase
   { description :: String,
@@ -50,7 +52,7 @@ infix 0 ~>
 runTestsFor :: Sandbox s -> [TestCase s] -> IO ()
 runTestsFor app tests = do
   res <-
-    MTL.forM
+    forM
       tests
       ( \TestCase {description, t} -> do
           res <- tryIOError (runInteractiveTest app t)
@@ -109,7 +111,7 @@ pressKey :: (Stack.HasCallStack) => Key -> InteractiveM s ()
 pressKey key = Stack.withFrozenCallStack $ pressKey' key []
 
 pressKeys :: (Stack.HasCallStack) => [Key] -> InteractiveM s ()
-pressKeys keys = Stack.withFrozenCallStack $ MTL.forM_ keys pressKey
+pressKeys keys = Stack.withFrozenCallStack $ forM_ keys pressKey
 
 pressKey' :: (Stack.HasCallStack) => Key -> [Modifier] -> InteractiveM s ()
 pressKey' key modifiers = _sendEvent Stack.callStack (Key key modifiers)
